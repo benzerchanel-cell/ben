@@ -1,13 +1,26 @@
+import random
 
 
 
 Ralationship = 0
 Day = 0
-Money = 0
+Money = 100
 Food = 5
 Demon_Hunger = 3
 Demon_mood = 0
 
+def main_status():
+    
+    print(f"ค่าความสุข {Demon} -1 ")
+    print(f"ค่าอาหาร {Demon} -1 ")
+    print(f"เงิน +100 \n")
+
+    print(f"ค่าอาหาร {Demon} เหลือ",Demon_Hunger)
+    print(f"ค่าความสุข {Demon} เหลือ",Demon_mood)
+    print(f"คุณมีเงิน {Money}")
+    print(f"อาหารเหลือ {Food}\n")
+
+    print("คุณได้ทํางานเสร็จเรียบร้อยเเล้ว...คุณจะเลือกทําอะไรต่อ \n  1)ไปช๊อปปิ้ง \n 2)กลับบ้าน")
 
 def daily_morning ():
 
@@ -23,19 +36,56 @@ def daily_morning ():
 
     if(answer == 1):
         print(f"{Demon}: โชคดีนะคะนายท่าน\n")
+
         Demon_Hunger -= 1
         Demon_mood -= 1
         Money += 100
         Food += 0
 
-        print(f"ค่าความสุข {Demon} -1 ")
-        print(f"ค่าอาหาร {Demon} -1 ")
-        print(f"เงิน +100 \n")
+        
+        main_status()
+        
+        answer = int(input("คุณเลือกที่จะ : "))
 
-        print(f"ค่าอาหาร {Demon} เหลือ",Demon_Hunger)
-        print(f"ค่าความสุข {Demon} เหลือ",Demon_mood)
-        print(f"คุณมีเงิน {Money}")
-        print(f"อาหารเหลือ {Food}\n")
+        if(answer == 1):
+            item_shop = ["โทรศัพท์ ราคา 1000","หนังสือการ์ตูน ราคา 200","เสื้อผ้าผู้หญิง ราคา 500","ตุ๊กตา ราคา 200"]
+            item_price = [1000, 200 , 500 , 200]
+            item_random = random.randrange(0, 3)
+            daily_item = item_shop[item_random]
+            #daily_item = random.choice(item_shop)
+
+            print(f"ร้านค้าของคุณมี \n 1){daily_item} เเละ 2) อาหาร ราคา 20   3)กลับบ้าน  คุณจะเลือกอะไรบ้าง " )
+            answer = int(input("คุณเลือกที่จะ : "))
+            if(answer == 1):
+                if Money < item_price[item_random]:
+                    print("คุณมีเงินไม่พอ")
+                else:
+                    print("ขอบคุณที่อุดหนุน")
+                    Money -= item_price[item_random]
+                    print(f"คุณเหลือเงิน {Money} บาท")
+            elif(answer == 2): 
+                Food_price = int(input("คุณต้องการซือกี่ชิ้น"))
+                foodprice = Food_price * 20
+                if Money < foodprice:
+                    print("คุณมีเงินไม่พอ")
+                else:
+                    print("ขอบคุณที่อุดหนุน")
+                    Money -= foodprice
+                    print(f"คุณเหลือเงิน {Money} บาท")
+            elif(answer == 3):
+                print(f"คุณได้กลับบ้านมาเจอ {Demon}")
+        
+        elif(answer == 2):
+            print(f"คุณได้กลับบ้านมาเจอ {Demon}")
+
+    
+
+    
+    
+
+                 
+                 
+
 
     elif(answer == 2):
         print(f"{Demon}: อาหารอร่อยมากคะนายท่าน {User}")
